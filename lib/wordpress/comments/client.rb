@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'date'
+require 'open-uri'
 module Wordpress
 	module Comments
 		class Client
@@ -19,6 +20,17 @@ module Wordpress
 					
 					item
 				end
+			end
+
+			def fetch
+				xml = get @url
+				parse xml
+			end
+
+			private
+
+			def get url 
+				open url
 			end
 		end
 	end

@@ -1,4 +1,4 @@
-RSpec::Matchers.define :be_a_multiple_of do |expected|
+RSpec::Matchers.define :match_date do |expected|
   match do |actual|
     format_date(actual) == expected
   end
@@ -8,15 +8,16 @@ RSpec::Matchers.define :be_a_multiple_of do |expected|
   end
 
 
-  failure_message_for_should do |actual|
+  failure_message do |actual|
     "expected that  ' #{form_date(actual)} ' would match ' #{form_date(expected)} ' "
   end
 
-  failure_message_for_should_not do |actual|
-    "expected that '#{form_date(actual}' would not be a precise multiple of '#{expected}'"
+  failure_message_when_negated do |actual|
+    "expected that '#{form_date(actual)}' would not be a precise multiple of '#{expected}'"
   end
 
   description do
-    "be a precise multiple of #{expected}"
+    "be a date match of #{expected}"
   end
+
 end
